@@ -3,6 +3,8 @@ const fsp=require('fs').promises;
 const fs=require('fs');
 const path=require('path'); 
 const database = require('better-sqlite3');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const db=new database('rag.db', { verbose: console.log });
 
@@ -88,7 +90,7 @@ app.get('/search', async (req, res) => {
 
 })
 const OpenAI = require('openai');
-const openai = new OpenAI({apiKey:"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"});
+const openai = new OpenAI({apiKey:process.env.OPENAI_API_KEY});
 
 
 app.get('/ask', async (req, res) => {
